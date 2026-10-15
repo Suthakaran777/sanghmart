@@ -659,9 +659,9 @@ export default function AdminDashboard({ user }) {
           {sellersList.map(s => (
             <div key={s.id} className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <strong style={{ fontSize: '0.98rem' }}>{s.name}</strong> ({s.username})
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                  Phone: {s.phone || 'N/A'} • Sales: <strong>₹{s.total_sales || 0}</strong>
+                <strong style={{ fontSize: '1.02rem', color: 'var(--text-main)' }}>{s.name}</strong>
+                <div style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginTop: '3px' }}>
+                  Sales: <strong style={{ color: 'var(--text-main)' }}>₹{s.total_sales || 0}</strong>
                 </div>
               </div>
 
@@ -858,16 +858,6 @@ export default function AdminDashboard({ user }) {
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Phone Number</label>
-                <input
-                  className="form-control"
-                  type="tel"
-                  placeholder="9876543210"
-                  value={sellerPhone}
-                  onChange={(e) => setSellerPhone(e.target.value)}
-                />
-              </div>
 
               <div className="form-group">
                 <label className="form-label">Password</label>
