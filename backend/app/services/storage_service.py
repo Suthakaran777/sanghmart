@@ -7,9 +7,9 @@ from botocore.config import Config
 UPLOAD_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-R2_ACCOUNT_ID = os.getenv("R2_ACCOUNT_ID", "").strip()
-R2_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID", "").strip()
-R2_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY", "").strip()
+R2_ACCOUNT_ID = os.getenv("R2_ACCOUNT_ID", "b165bd8e9e2edb66fe3453ef316a7f46").strip()
+R2_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID", "ea9344069477248538a26bad5105cce2").strip()
+R2_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY", "947c3503a7195e2676007f56d907df03cee704d295f89affcc89c77474c789dc").strip()
 R2_BUCKET_NAME = os.getenv("R2_BUCKET_NAME", "sanghmart-proofs").strip()
 R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "").strip()
 

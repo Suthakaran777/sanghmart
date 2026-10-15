@@ -8,8 +8,10 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     
-    # Defaults to SQLite async for local dev / tests, or Supabase PostgreSQL asyncpg in production
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./sanghmart.db")
+    DATABASE_URL: str = os.getenv(
+        "DATABASE_URL",
+        "postgresql+asyncpg://postgres.jybohbhbxctvkqortqtl:Sutha%402006__@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
+    )
     
     # UPI and settings defaults
     UPI_ID: str = os.getenv("UPI_ID", "asuthakaran2006@oksbi")

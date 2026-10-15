@@ -18,5 +18,5 @@ COPY . .
 
 EXPOSE 8080
 
-# Run uvicorn with exec so it becomes PID 1 and binds port immediately
-CMD exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}
+# Start uvicorn directly on port 8080 for Google Cloud Run
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]

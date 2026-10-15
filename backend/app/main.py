@@ -111,6 +111,10 @@ app.include_router(orders.router)
 app.include_router(payments.router)
 app.include_router(admin_dashboard.router)
 
+@app.get("/")
+async def root():
+    return {"status": "ok", "app": settings.APP_NAME}
+
 @app.get("/health")
 async def health():
     return {"status": "ok", "app": settings.APP_NAME}
