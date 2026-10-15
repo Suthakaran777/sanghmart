@@ -1272,25 +1272,26 @@ export default function App() {
             </div>
 
             {/* History Filter Tabs */}
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', overflowX: 'auto' }}>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
               <button
-                className={`btn ${historyFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
-                style={{ height: '34px', minHeight: '34px', padding: '0 12px', fontSize: '0.82rem' }}
+                className={`btn history-filter-btn ${historyFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ height: '34px', minHeight: '34px', padding: '0 14px', fontSize: '0.82rem', flexShrink: 0, whiteSpace: 'nowrap', borderRadius: '9999px', width: 'auto', minWidth: 'max-content' }}
                 onClick={() => setHistoryFilter('all')}
               >
                 All ({myOrders.length})
               </button>
               <button
-                className={`btn ${historyFilter === 'active' ? 'btn-primary' : 'btn-secondary'}`}
-                style={{ height: '34px', minHeight: '34px', padding: '0 12px', fontSize: '0.82rem' }}
+                className={`btn history-filter-btn ${historyFilter === 'active' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ height: '34px', minHeight: '34px', padding: '0 14px', fontSize: '0.82rem', flexShrink: 0, whiteSpace: 'nowrap', borderRadius: '9999px', width: 'auto', minWidth: 'max-content' }}
                 onClick={() => setHistoryFilter('active')}
               >
                 Active ({myOrders.filter(o => o.order_status === 'Active').length})
               </button>
               <button
-                className={`btn ${historyFilter === 'cancelled' ? 'btn-primary' : 'btn-secondary'}`}
+                className={`btn history-filter-btn ${historyFilter === 'cancelled' ? 'btn-primary' : 'btn-secondary'}`}
                 style={{
-                  height: '34px', minHeight: '34px', padding: '0 12px', fontSize: '0.82rem',
+                  height: '34px', minHeight: '34px', padding: '0 14px', fontSize: '0.82rem',
+                  flexShrink: 0, whiteSpace: 'nowrap', borderRadius: '9999px', width: 'auto', minWidth: 'max-content',
                   backgroundColor: historyFilter === 'cancelled' ? '#dc2626' : undefined,
                   borderColor: historyFilter === 'cancelled' ? '#dc2626' : undefined,
                   color: historyFilter === 'cancelled' ? '#fff' : '#b91c1c'

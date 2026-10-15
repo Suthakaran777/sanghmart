@@ -238,10 +238,28 @@ button:disabled, .btn:disabled {
   transform: scale(1.18);
 }
 
-/* ---------------- NAVIGATION TABS HOVER ---------------- */
+/* ---------------- NAVIGATION TABS HOVER & MOBILE LAYOUT ---------------- */
 /* Top Main Navigation Tabs */
+.main-nav-bar {
+  display: flex !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  border-bottom: 2px solid var(--border) !important;
+  background: #ffffff !important;
+}
+.main-nav-bar::-webkit-scrollbar {
+  display: none !important;
+}
 .main-nav-bar button,
 .nav-tab-btn {
+  flex: 1 0 auto !important;
+  min-height: 46px !important;
+  padding: 10px 14px !important;
+  white-space: nowrap !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  gap: 6px !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
@@ -253,8 +271,45 @@ button:disabled, .btn:disabled {
 }
 
 /* Admin Subnavigation Buttons */
+.admin-subnav {
+  display: flex !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  padding: 6px 4px 14px 4px !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+.admin-subnav::-webkit-scrollbar {
+  display: none !important;
+}
 .admin-subnav button {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  min-width: max-content !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  padding: 0 16px !important;
+  border-radius: 9999px !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.admin-subnav button.btn-primary {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 3px 10px rgba(217, 83, 30, 0.35) !important;
+}
+.admin-subnav button.btn-secondary {
+  background-color: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
 }
 .admin-subnav button:hover:not(.btn-primary) {
   background-color: #e2e8f0 !important;
@@ -265,6 +320,10 @@ button:disabled, .btn:disabled {
 
 /* History Filter Tabs */
 .history-filter-btn {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  min-width: max-content !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .history-filter-btn:hover:not(.btn-primary) {

@@ -213,7 +213,8 @@ export default function AdminDashboard({ user }) {
       {/* Clean Professional Subnav */}
       <div className="admin-subnav" style={{
         display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '12px',
-        borderBottom: '1px solid var(--border)', marginBottom: '16px', scrollbarWidth: 'none'
+        borderBottom: '1px solid var(--border)', marginBottom: '16px', scrollbarWidth: 'none',
+        WebkitOverflowScrolling: 'touch'
       }}>
         {navTabs.map(t => {
           const Icon = t.icon;
@@ -227,9 +228,10 @@ export default function AdminDashboard({ user }) {
               }}
               className={`btn ${isActive ? 'btn-primary' : 'btn-secondary'}`}
               style={{
-                minHeight: '40px', height: '40px', fontSize: '0.86rem', padding: '0 14px',
+                minHeight: '40px', height: '40px', fontSize: '0.86rem', padding: '0 16px',
                 whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '8px',
-                borderRadius: '8px', fontWeight: isActive ? '700' : '500'
+                borderRadius: '9999px', fontWeight: isActive ? '700' : '600',
+                flexShrink: 0, width: 'auto', minWidth: 'max-content'
               }}
             >
               <Icon size={16} />
