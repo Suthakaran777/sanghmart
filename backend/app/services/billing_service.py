@@ -1,7 +1,10 @@
 import io
 import base64
 import urllib.parse
-import qrcode
+try:
+    import qrcode
+except ImportError:
+    qrcode = None
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
@@ -19,6 +22,9 @@ def generate_upi_qr_data_url(upi_id: str, amount: int, bill_no: str, app_name: s
     safe_tn = urllib.parse.quote(bill_no)
     upi_string = f"upi://pay?pa={upi_id}&pn={safe_pn}&am={amount}&tn={safe_tn}&cu=INR"
     
+    if not qrcode:
+        return "", upi_string
+
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_M,

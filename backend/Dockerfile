@@ -18,5 +18,5 @@ COPY . .
 
 EXPOSE 8080
 
-# Start uvicorn directly on port 8080 for Google Cloud Run
-CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Start uvicorn with exec and PORT fallback for Google Cloud Run
+CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
