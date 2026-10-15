@@ -22,7 +22,7 @@ def get_r2_client():
         endpoint_url=endpoint_url,
         aws_access_key_id=R2_ACCESS_KEY_ID,
         aws_secret_access_key=R2_SECRET_ACCESS_KEY,
-        config=Config(signature_version="s3.v4")
+        region_name="auto"
     )
 
 def upload_screenshot_file(contents: bytes, filename: str, content_type: str = "image/jpeg") -> str:
