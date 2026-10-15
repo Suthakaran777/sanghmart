@@ -17,32 +17,37 @@ async def lifespan(app: FastAPI):
     # Seed default admin and sample data if not present
     async with AsyncSessionLocal() as session:
         repo = Repository(session)
-        admin_user = await repo.get_user_by_username("admin")
+        admin_user = await repo.get_user_by_username("adminji")
         if not admin_user:
             admin_user = await repo.create_user(
                 name="Head Organizer",
-                username="admin",
+                username="adminji",
                 password_hash=get_password_hash("admin123"),
                 role="admin",
                 phone="+919999999999"
             )
-            # Seed standard uniform items with updated official prices
+            # Seed standard uniform items with updated official prices and sizes
+            pant_sizes = [str(x) for x in range(22, 50, 2)]  # 22, 24, 26..48
+            shirt_sizes = [str(x) for x in range(30, 50, 2)]  # 30, 32, 34..48
+            shoe_sizes = [str(x) for x in range(5, 15)]  # 5 to 14
+            universal_size = ["Universal"]
+
             uniform_items = [
-                ("Pant", 350, ["28", "30", "32", "34", "36", "38", "40"]),
-                ("Shirt", 220, ["32", "34", "36", "38", "40", "42", "44"]),
-                ("Socks", 30, ["Standard"]),
-                ("Cap", 30, ["S", "M", "L", "XL"]),
-                ("Belt", 85, ["Free Size"]),
-                ("Shoe", 170, ["6", "7", "8", "9", "10", "11"])
+                ("Pant", 350, pant_sizes),
+                ("Shirt", 220, shirt_sizes),
+                ("Socks", 30, universal_size),
+                ("Cap", 30, universal_size),
+                ("Belt", 85, universal_size),
+                ("Shoe", 170, shoe_sizes)
             ]
             for item_name, price, sizes in uniform_items:
                 created_item = await repo.create_item(item_name, price, sizes)
                 item_loaded = await repo.get_item_by_id(created_item.id)
-                # Seed initial stock of 25 for each size
+                # Seed initial stock of 50 for each size
                 for s in item_loaded.sizes:
                     await repo.update_stock(
                         item_size_id=s.id,
-                        qty_delta=25,
+                        qty_delta=50,
                         movement_type="opening",
                         reason="Initial stock provisioning",
                         user_id=admin_user.id
@@ -81,14 +86,28 @@ async def lifespan(app: FastAPI):
             await repo.set_setting("bill_header", "Sangh Mart")
             await repo.set_setting("upi_id", "asuthakaran2006@oksbi")
             
-            # Seed all 10 sellers for counters
-            for i in range(1, 11):
+            # Seed all 12 official sellers
+            official_sellers = [
+                "suthakaran",
+                "harivatcha",
+                "vishal",
+                "sreevaishnav",
+                "anish",
+                "kirankumar",
+                "yogiram",
+                "munees",
+                "dinesh",
+                "ashwin",
+                "jothi",
+                "sathriyan"
+            ]
+            for idx, uname in enumerate(official_sellers, 1):
                 await repo.create_user(
-                    name=f"Counter Seller {i}",
-                    username=f"seller{i}",
+                    name=uname.capitalize(),
+                    username=uname.lower(),
                     password_hash=get_password_hash("seller123"),
                     role="seller",
-                    phone=f"+9198765432{i:02d}"
+                    phone=f"+9198765432{idx:02d}"
                 )
             
             await session.commit()
