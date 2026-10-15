@@ -18,5 +18,5 @@ COPY . .
 
 EXPOSE 8080
 
-# Run uvicorn on $PORT
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
+# Run uvicorn with exec so it becomes PID 1 and binds port immediately
+CMD exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}

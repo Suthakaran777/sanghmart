@@ -29,7 +29,9 @@ if "@" in db_url and "://" in db_url and db_url.startswith("postgresql+asyncpg:/
 engine = create_async_engine(
     db_url,
     echo=False,
-    future=True
+    future=True,
+    pool_pre_ping=True,
+    pool_recycle=300
 )
 
 AsyncSessionLocal = async_sessionmaker(
